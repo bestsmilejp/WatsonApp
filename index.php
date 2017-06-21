@@ -18,6 +18,8 @@ error_log("start");
 // 不正であれば例外の内容を出力
 try {
   $events = $bot->parseEventRequest(file_get_contents('php://input'), $signature);
+
+  error_log("start2");
 } catch(\LINE\LINEBot\Exception\InvalidSignatureException $e) {
   error_log('parseEventRequest failed. InvalidSignatureException => '.var_export($e, true));
 } catch(\LINE\LINEBot\Exception\UnknownEventTypeException $e) {
