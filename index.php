@@ -2,15 +2,17 @@
 
 // Composerでインストールしたライブラリを一括読み込み
 require_once __DIR__ . '/vendor/autoload.php';
-// テーブル名を定義
-define('TABLE_NAME_CONVERSATIONS', 'conversations');
-
 // アクセストークンを使いCurlHTTPClientをインスタンス化
 $httpClient = new \LINE\LINEBot\HTTPClient\CurlHTTPClient(getenv('CHANNEL_ACCESS_TOKEN'));
 // CurlHTTPClientとシークレットを使いLINEBotをインスタンス化
 $bot = new \LINE\LINEBot($httpClient, ['channelSecret' => getenv('CHANNEL_SECRET')]);
 // LINE Messaging APIがリクエストに付与した署名を取得
 $signature = $_SERVER['HTTP_' . \LINE\LINEBot\Constant\HTTPHeader::LINE_SIGNATURE];
+
+
+// テーブル名を定義
+define('TABLE_NAME_CONVERSATIONS', 'conversations');
+
 error_log("start");
 // 署名が正当かチェック。正当であればリクエストをパースし配列へ
 // 不正であれば例外の内容を出力
@@ -25,6 +27,7 @@ try {
 } catch(\LINE\LINEBot\Exception\InvalidEventRequestException $e) {
   error_log('parseEventRequest failed. InvalidEventRequestException => '.var_export($e, true));
 }
+error_log('Non message event has come1');
 
 // 配列に格納された各イベントをループで処理
 foreach ($events as $event) {
