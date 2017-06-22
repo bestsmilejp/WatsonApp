@@ -1,3 +1,3 @@
 <?php
-error_log "Hello";
+error_log ("Hello");
 ?>
