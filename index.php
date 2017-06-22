@@ -11,7 +11,7 @@ $signature = $_SERVER['HTTP_' . \LINE\LINEBot\Constant\HTTPHeader::LINE_SIGNATUR
 
 
 // テーブル名を定義
-define('TABLE_NAME_CONVERSATIONS', 'conversations');
+// define('TABLE_NAME_CONVERSATIONS', 'conversations');
 
 error_log("start");
 // 署名が正当かチェック。正当であればリクエストをパースし配列へ
